@@ -58,7 +58,7 @@ const Navbar = () => {
     );
 
     return (
-        <div className="relative z-10 w-64 h-screen">
+        <div className="relative z-10 w-60 h-screen">
             {/* Background with animated gradient */}
             <div className="absolute inset-0 bg-gradient-to-b from-orange-primary to-orange-secondary animate-gradient-slow">
                 <div className="absolute inset-0 backdrop-blur-sm bg-black/10"></div>
@@ -77,26 +77,26 @@ const Navbar = () => {
                 </div>
 
                 {/* Navigation Links */}
-                <nav className="flex flex-col gap-3">
+                <nav className="flex flex-col gap-3 text-xl">
                     <NavItem 
                         to="/home/banner" 
                         icon={<GoHomeFill />} 
-                        text="Home" 
+                        text="হোম" 
                     />
                     
                     {user && (
                         <>
                             <NavItem 
-                                to="/home/chats" 
-                                icon={<BiTransfer />} 
-                                text="History" 
-                            />
-                            <NavItem 
                                 to="/home/new-chat" 
-                                icon={<BsChatDotsFill />} 
-                                text="Chat" 
+                                icon={<BiTransfer />} 
+                                text="অনুবাদক" 
                             />
                             <NavItem 
+                                to="/home/chats" 
+                                icon={<BsChatDotsFill />} 
+                                text="চ্যাটবট"
+                            />
+                            {/* <NavItem 
                                 to="/home/documents" 
                                 icon={<MdEditDocument />} 
                                 text="Text Editor" 
@@ -112,7 +112,7 @@ const Navbar = () => {
                                 to="/home/userDashboard" 
                                 icon={<MdDashboard />} 
                                 text="User Dashboard" 
-                            />
+                            /> */}
                         </>
                     )}
 

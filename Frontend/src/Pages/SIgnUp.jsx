@@ -68,7 +68,7 @@ const SignUp = () => {
             <div className="bg-gradient-to-r from-orange-primary to-orange-secondary w-1/3 p-12 flex flex-col justify-center items-center relative overflow-hidden">
               <div className="flex flex-col items-center relative z-10">
                 <h1 className="text-4xl text-center pb-8 font-bold text-white animate-float">
-                  BanglaBridge
+                  Medilens
                 </h1>
                 <FaAirbnb className="text-6xl text-center text-white animate-float-delayed" />
               </div>

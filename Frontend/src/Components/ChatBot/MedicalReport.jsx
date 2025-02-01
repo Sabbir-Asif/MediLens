@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Authentication/AuthProvider';
 import { format } from 'date-fns';
+import { AlertCircle, Heart, Stethoscope, FileText, Info } from 'lucide-react';
 
 const MedicalReport2 = (props) => {
   const { user } = useContext(AuthContext);
@@ -54,34 +55,42 @@ const MedicalReport2 = (props) => {
     saveReport();
   }, [user?.id, rawReport, report]); // Removed isReportSaved from dependencies
 
+
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-6">
-      {/* Rest of the JSX remains the same */}
-      {/* রোগীর তথ্য */}
-      <div className="bg-gradient-to-r from-orange-50 to-orange-100 rounded-lg shadow-md overflow-hidden">
-        <div className="p-6">
-          <h2 className="text-2xl font-bold text-orange-800 mb-4">
-            {report.রোগীর_তথ্য?.শিরোনাম}
-          </h2>
-          <p className="text-gray-800 text-lg leading-relaxed">
+    <div className="container mx-auto p-4 md:p-6 space-y-6 font-poppins bg-gradient-to-br from-[#F8FDFF] via-white to-[#E8F7FA]">
+      {/* Patient Information */}
+      <div className="bg-white rounded-xl shadow-sm ring-1 ring-[#4DA1A9]/10 overflow-hidden">
+        <div className="bg-gradient-to-r from-[#4DA1A9] to-[#79D7BE] p-4">
+          <div className="flex items-center gap-3">
+            <Heart className="h-6 w-6 text-white" />
+            <h2 className="text-xl font-bold text-white font-exo">
+              {report.রোগীর_তথ্য?.শিরোনাম || "রোগীর তথ্য"}
+            </h2>
+          </div>
+        </div>
+        <div className="p-5">
+          <p className="text-gray-700 leading-relaxed">
             {report.রোগীর_তথ্য?.বিবরণ}
           </p>
         </div>
       </div>
 
-      {/* স্বাস্থ্য পরীক্ষা */}
-      <div className="bg-white rounded-lg shadow-md overflow-hidden">
-        <div className="p-6">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">
-            {report.স্বাস্থ্য_পরীক্ষা?.শিরোনাম}
-          </h2>
+      {/* Health Examination */}
+      <div className="bg-white rounded-xl shadow-sm ring-1 ring-[#4DA1A9]/10 overflow-hidden">
+        <div className="p-5">
+          <div className="flex items-center gap-3 mb-6">
+            <Stethoscope className="h-6 w-6 text-[#4DA1A9]" />
+            <h2 className="text-xl font-bold text-gray-800 font-exo">
+              {report.স্বাস্থ্য_পরীক্ষা?.শিরোনাম}
+            </h2>
+          </div>
           <div className="space-y-6">
             {report.স্বাস্থ্য_পরীক্ষা?.বিভাগসমূহ?.map((section, index) => (
-              <div key={index} className="space-y-2">
-                <h3 className="text-lg font-semibold text-gray-700">
+              <div key={index} className="p-4 bg-gray-50 rounded-lg">
+                <h3 className="text-base font-semibold text-[#4DA1A9] mb-2">
                   {section.শিরোনাম}
                 </h3>
-                <p className="text-gray-600 whitespace-pre-line">
+                <p className="text-gray-600 text-sm whitespace-pre-line">
                   {section.বিবরণ}
                 </p>
               </div>
@@ -90,20 +99,23 @@ const MedicalReport2 = (props) => {
         </div>
       </div>
 
-      {/* চিকিৎসা পরিভাষা */}
-      <div className="bg-blue-50 rounded-lg shadow-md overflow-hidden">
-        <div className="p-6">
-          <h2 className="text-2xl font-bold text-blue-800 mb-6">
-            চিকিৎসা পরিভাষা
-          </h2>
+      {/* Medical Terms */}
+      <div className="bg-white rounded-xl shadow-sm ring-1 ring-[#4DA1A9]/10 overflow-scroll">
+        <div className="p-5">
+          <div className="flex items-center gap-3 mb-6">
+            <FileText className="h-6 w-6 text-[#4DA1A9]" />
+            <h2 className="text-xl font-bold text-gray-800 font-exo">
+              চিকিৎসা পরিভাষা
+            </h2>
+          </div>
           <div className="grid gap-4">
             {report.চিকিৎসা_পরিভাষা?.map((term, index) => (
-              <div key={index} className="border-b border-blue-100 pb-4 last:border-b-0">
-                <div className="flex flex-col gap-2">
-                  <h4 className="font-semibold text-blue-700">
+              <div key={index} className="p-4 bg-[#4DA1A9]/5 rounded-lg">
+                <div className="space-y-2">
+                  <h4 className="font-medium text-[#4DA1A9]">
                     {term.পরিভাষা}
                   </h4>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 text-sm">
                     {term.ব্যাখ্যা}
                   </p>
                 </div>
@@ -113,25 +125,31 @@ const MedicalReport2 = (props) => {
         </div>
       </div>
 
-      {/* গুরুত্বপূর্ণ তথ্য */}
-      <div className="bg-green-50 rounded-lg shadow-md overflow-hidden">
-        <div className="p-6">
-          <h2 className="text-2xl font-bold text-green-800 mb-6">
-            গুরুত্বপূর্ণ তথ্য
-          </h2>
+      {/* Important Information */}
+      <div className="bg-white rounded-xl shadow-sm ring-1 ring-[#4DA1A9]/10 overflow-scroll">
+        <div className="p-5">
+          <div className="flex items-center gap-3 mb-6">
+            <AlertCircle className="h-6 w-6 text-[#4DA1A9]" />
+            <h2 className="text-xl font-bold text-gray-800 font-exo">
+              গুরুত্বপূর্ণ তথ্য
+            </h2>
+          </div>
           {report.গুরুত্বপূর্ণ_তথ্য?.map((item, index) => (
-            <div key={index} className="space-y-3 border-b border-green-100 pb-4 last:border-b-0">
-              <p className="text-gray-800 font-medium">
-                {item.তথ্য}
-              </p>
-              {item.পরামর্শ && (
-                <div className="bg-green-100 p-3 rounded-md">
-                  <p className="text-green-800">
-                    <span className="font-medium">পরামর্শ: </span>
-                    {item.পরামর্শ}
-                  </p>
-                </div>
-              )}
+            <div key={index} className="mb-4 last:mb-0">
+              <div className="p-4 bg-[#4DA1A9]/5 rounded-lg">
+                <p className="text-gray-700 text-sm mb-3">
+                  {item.তথ্য}
+                </p>
+                {item.পরামর্শ && (
+                  <div className="flex items-start gap-2 p-3 bg-[#79D7BE]/10 rounded-md">
+                    <Info className="h-4 w-4 text-[#4DA1A9] mt-0.5" />
+                    <p className="text-sm text-gray-600">
+                      <span className="font-medium text-[#4DA1A9]">পরামর্শ: </span>
+                      {item.পরামর্শ}
+                    </p>
+                  </div>
+                )}
+              </div>
             </div>
           ))}
         </div>

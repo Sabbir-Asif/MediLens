@@ -20,6 +20,9 @@ export default {
     },
   },
   plugins: [
-    daisyui
+    daisyui,
   ],
+  daisyui: {
+    themes: ["light", "dark"],
+  },
 }
