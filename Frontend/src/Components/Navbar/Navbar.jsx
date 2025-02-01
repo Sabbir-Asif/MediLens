@@ -18,6 +18,8 @@ const Navbar = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [activeItem, setActiveItem] = useState('');
 
+    console.log(user);
+
     useEffect(() => {
         setActiveItem(location.pathname);
     }, [location]);
@@ -85,12 +87,12 @@ const Navbar = () => {
                     {user && (
                         <>
                             <NavItem 
-                                to="/home/translate" 
+                                to="/home/chats" 
                                 icon={<BiTransfer />} 
-                                text="Translate" 
+                                text="History" 
                             />
                             <NavItem 
-                                to="/home/chat" 
+                                to="/home/new-chat" 
                                 icon={<BsChatDotsFill />} 
                                 text="Chat" 
                             />

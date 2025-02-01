@@ -11,6 +11,12 @@ import ForgotPassword from "./Pages/ForgotPassword";
 import LandingPage from "./Pages/LandingPage";
 import ErrorPage from "./Pages/ErrorPage";
 import AuthProvider from "./Components/Authentication/AuthProvider";
+import IntegratedOcrChatbot from "./Components/ChatBot/IntegratedOcrChatbot";
+import Banner from "./Components/Banner/Banner";
+import Home from "./Pages/Home";
+import ChatList from "./Components/ChatBot/ChatList";
+import ChatDetails from "./Components/ChatBot/ChatDeails";
+
 
 const router = createBrowserRouter([
   {
@@ -28,8 +34,30 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <LandingPage />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
   },
+  {
+    path: "/home",
+    element: <Home />,
+    children: [
+      {
+        path: "banner",
+        element: <Banner />
+      },
+      {
+        path: "new-chat",
+        element: <IntegratedOcrChatbot />
+      },
+      {
+        path: 'chats',
+        element: <ChatList />
+      },
+      {
+        path: 'chat/:chatId',
+        element: <ChatDetails />
+      }
+    ]
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
